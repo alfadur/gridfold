@@ -36,15 +36,16 @@ var LD38 = function (_, Kotlin) {
     ControllerAction$Select_instance = new ControllerAction('Select', 4);
     ControllerAction$Submit_instance = new ControllerAction('Submit', 5);
     ControllerAction$Restart_instance = new ControllerAction('Restart', 6);
-    ControllerAction$_1_instance = new ControllerAction('_1', 7);
-    ControllerAction$_2_instance = new ControllerAction('_2', 8);
-    ControllerAction$_3_instance = new ControllerAction('_3', 9);
-    ControllerAction$_4_instance = new ControllerAction('_4', 10);
-    ControllerAction$_5_instance = new ControllerAction('_5', 11);
-    ControllerAction$_6_instance = new ControllerAction('_6', 12);
-    ControllerAction$_7_instance = new ControllerAction('_7', 13);
-    ControllerAction$_8_instance = new ControllerAction('_8', 14);
-    ControllerAction$_9_instance = new ControllerAction('_9', 15);
+    ControllerAction$Step_instance = new ControllerAction('Step', 7);
+    ControllerAction$_1_instance = new ControllerAction('_1', 8);
+    ControllerAction$_2_instance = new ControllerAction('_2', 9);
+    ControllerAction$_3_instance = new ControllerAction('_3', 10);
+    ControllerAction$_4_instance = new ControllerAction('_4', 11);
+    ControllerAction$_5_instance = new ControllerAction('_5', 12);
+    ControllerAction$_6_instance = new ControllerAction('_6', 13);
+    ControllerAction$_7_instance = new ControllerAction('_7', 14);
+    ControllerAction$_8_instance = new ControllerAction('_8', 15);
+    ControllerAction$_9_instance = new ControllerAction('_9', 16);
   }
   var ControllerAction$Up_instance;
   function ControllerAction$Up_getInstance() {
@@ -80,6 +81,11 @@ var LD38 = function (_, Kotlin) {
   function ControllerAction$Restart_getInstance() {
     ControllerAction_initFields();
     return ControllerAction$Restart_instance;
+  }
+  var ControllerAction$Step_instance;
+  function ControllerAction$Step_getInstance() {
+    ControllerAction_initFields();
+    return ControllerAction$Step_instance;
   }
   var ControllerAction$_1_instance;
   function ControllerAction$_1_getInstance() {
@@ -132,7 +138,7 @@ var LD38 = function (_, Kotlin) {
     interfaces: [Enum]
   };
   function ControllerAction$values() {
-    return [ControllerAction$Up_getInstance(), ControllerAction$Left_getInstance(), ControllerAction$Right_getInstance(), ControllerAction$Down_getInstance(), ControllerAction$Select_getInstance(), ControllerAction$Submit_getInstance(), ControllerAction$Restart_getInstance(), ControllerAction$_1_getInstance(), ControllerAction$_2_getInstance(), ControllerAction$_3_getInstance(), ControllerAction$_4_getInstance(), ControllerAction$_5_getInstance(), ControllerAction$_6_getInstance(), ControllerAction$_7_getInstance(), ControllerAction$_8_getInstance(), ControllerAction$_9_getInstance()];
+    return [ControllerAction$Up_getInstance(), ControllerAction$Left_getInstance(), ControllerAction$Right_getInstance(), ControllerAction$Down_getInstance(), ControllerAction$Select_getInstance(), ControllerAction$Submit_getInstance(), ControllerAction$Restart_getInstance(), ControllerAction$Step_getInstance(), ControllerAction$_1_getInstance(), ControllerAction$_2_getInstance(), ControllerAction$_3_getInstance(), ControllerAction$_4_getInstance(), ControllerAction$_5_getInstance(), ControllerAction$_6_getInstance(), ControllerAction$_7_getInstance(), ControllerAction$_8_getInstance(), ControllerAction$_9_getInstance()];
   }
   ControllerAction.values = ControllerAction$values;
   function ControllerAction$valueOf(name) {
@@ -151,6 +157,8 @@ var LD38 = function (_, Kotlin) {
         return ControllerAction$Submit_getInstance();
       case 'Restart':
         return ControllerAction$Restart_getInstance();
+      case 'Step':
+        return ControllerAction$Step_getInstance();
       case '_1':
         return ControllerAction$_1_getInstance();
       case '_2':
@@ -252,7 +260,7 @@ var LD38 = function (_, Kotlin) {
     KeyboardControllerBase.call(this, window_0);
     this.holdActionKeys_2f7zbr$_0 = Kotlin.kotlin.collections.emptyMap_q3lmfv$();
     this.mixedActionKeys_2f7zbr$_0 = mapOf_0([to(ControllerAction$Up_getInstance(), [KeyCodes_getInstance().Up, KeyCodes_getInstance().W]), to(ControllerAction$Left_getInstance(), [KeyCodes_getInstance().Left, KeyCodes_getInstance().A]), to(ControllerAction$Down_getInstance(), [KeyCodes_getInstance().Down, KeyCodes_getInstance().S]), to(ControllerAction$Right_getInstance(), [KeyCodes_getInstance().Right, KeyCodes_getInstance().D])]);
-    this.pressActionKeys_2f7zbr$_0 = mapOf_0([to(ControllerAction$Submit_getInstance(), [KeyCodes_getInstance().Escape]), to(ControllerAction$Select_getInstance(), [KeyCodes_getInstance().Space, KeyCodes_getInstance().Enter]), to(ControllerAction$Restart_getInstance(), [KeyCodes_getInstance().R]), to(ControllerAction$_1_getInstance(), [KeyCodes_getInstance()._1]), to(ControllerAction$_2_getInstance(), [KeyCodes_getInstance()._2]), to(ControllerAction$_3_getInstance(), [KeyCodes_getInstance()._3]), to(ControllerAction$_4_getInstance(), [KeyCodes_getInstance()._4]), to(ControllerAction$_5_getInstance(), [KeyCodes_getInstance()._5]), to(ControllerAction$_6_getInstance(), [KeyCodes_getInstance()._6]), to(ControllerAction$_7_getInstance(), [KeyCodes_getInstance()._7]), to(ControllerAction$_8_getInstance(), [KeyCodes_getInstance()._8]), to(ControllerAction$_9_getInstance(), [KeyCodes_getInstance()._9])]);
+    this.pressActionKeys_2f7zbr$_0 = mapOf_0([to(ControllerAction$Submit_getInstance(), [KeyCodes_getInstance().Escape]), to(ControllerAction$Select_getInstance(), [KeyCodes_getInstance().Space, KeyCodes_getInstance().Enter]), to(ControllerAction$Restart_getInstance(), [KeyCodes_getInstance().R]), to(ControllerAction$Step_getInstance(), [KeyCodes_getInstance().U]), to(ControllerAction$_1_getInstance(), [KeyCodes_getInstance()._1]), to(ControllerAction$_2_getInstance(), [KeyCodes_getInstance()._2]), to(ControllerAction$_3_getInstance(), [KeyCodes_getInstance()._3]), to(ControllerAction$_4_getInstance(), [KeyCodes_getInstance()._4]), to(ControllerAction$_5_getInstance(), [KeyCodes_getInstance()._5]), to(ControllerAction$_6_getInstance(), [KeyCodes_getInstance()._6]), to(ControllerAction$_7_getInstance(), [KeyCodes_getInstance()._7]), to(ControllerAction$_8_getInstance(), [KeyCodes_getInstance()._8]), to(ControllerAction$_9_getInstance(), [KeyCodes_getInstance()._9])]);
   }
   Object.defineProperty(KeyboardController.prototype, 'holdActionKeys', {
     get: function () {
@@ -312,6 +320,7 @@ var LD38 = function (_, Kotlin) {
     this.levelIndex = levelIndex;
     this.node = new PIXI.Container();
     this.level = new Level(this.node, Layout_getInstance().levels.get_za3lpa$(this.levelIndex), this.size);
+    this.running = true;
   }
   IngameStage.prototype.handleController_riqvk4$ = function (controller) {
     if (controller.isActive_k8o7am$(ControllerAction$Up_getInstance())) {
@@ -326,7 +335,9 @@ var LD38 = function (_, Kotlin) {
       this.level.moveRight();
   };
   IngameStage.prototype.update = function () {
-    this.level.update();
+    if (this.running) {
+      this.level.update();
+    }
   };
   Object.defineProperty(IngameStage.prototype, 'root', {
     get: function () {
@@ -694,6 +705,9 @@ var LD38 = function (_, Kotlin) {
   function intersects($receiver, r) {
     return contains($receiver, new Point(Kotlin.numberToInt(r.x), Kotlin.numberToInt(r.y))) || contains($receiver, new Point(Kotlin.numberToInt(r.x) + Kotlin.numberToInt(r.width) - 1 | 0, Kotlin.numberToInt(r.y))) || contains($receiver, new Point(Kotlin.numberToInt(r.x) + Kotlin.numberToInt(r.width) - 1 | 0, Kotlin.numberToInt(r.y) + Kotlin.numberToInt(r.height) - 1 | 0)) || contains($receiver, new Point(Kotlin.numberToInt(r.x), Kotlin.numberToInt(r.y) + Kotlin.numberToInt(r.height) - 1 | 0));
   }
+  function shrink($receiver, amount) {
+    return new PIXI.Rectangle(Kotlin.numberToInt($receiver.x) + amount | 0, Kotlin.numberToInt($receiver.y) + amount | 0, Kotlin.numberToInt($receiver.width) - (amount * 2 | 0) | 0, Kotlin.numberToInt($receiver.height) - (amount * 2 | 0) | 0);
+  }
   function toPixi($receiver) {
     return new PIXI.Point($receiver.x, $receiver.y);
   }
@@ -743,10 +757,10 @@ var LD38 = function (_, Kotlin) {
   }
   Object.defineProperty(GameItem.prototype, 'base', {
     get: function () {
-      return this.center.minus_1a0nlc$(this.upShift.times_za3lpa$(this.size.y));
+      return this.center.minus_1a0nlc$(this.upShift.times_za3lpa$(this.size.y).div_za3lpa$(2));
     },
     set: function (value) {
-      this.center = value.plus_1a0nlc$(this.upShift.times_za3lpa$(this.size.y));
+      this.center = value.plus_1a0nlc$(this.upShift.times_za3lpa$(this.size.y).div_za3lpa$(2));
     }
   });
   Object.defineProperty(GameItem.prototype, 'upShift', {
@@ -806,12 +820,15 @@ var LD38 = function (_, Kotlin) {
   Aabb.prototype.contains_1a0nlc$ = function (p) {
     return contains(this.rectangle, p);
   };
-  Aabb.prototype.clip_csyz3o$ = function (p, velocity) {
+  Aabb.prototype.clip_5ltw8z$ = function (p, velocity, bounds) {
     var target = p.plus_1a0nlc$(velocity);
     var result = target;
     for (var i = 0; i <= 3; i++) {
       var c1 = this.corners.get_za3lpa$(i);
       var c2 = this.corners.get_za3lpa$((i + 1 | 0) % 4);
+      if (!contains(bounds, c1.plus_1a0nlc$(c2).div_za3lpa$(2))) {
+        continue;
+      }
       var side = c2.minus_1a0nlc$(c1);
       var norm = side.div_za3lpa$(Math.abs(side.x + side.y | 0) | 0).rotate90;
       var proj = target.minus_1a0nlc$(norm.times_za3lpa$(target.minus_1a0nlc$(c1).dot_1a0nlc$(norm) + 1 | 0));
@@ -826,7 +843,8 @@ var LD38 = function (_, Kotlin) {
     simpleName: 'Aabb',
     interfaces: []
   };
-  function Collision() {
+  function Collision(bounds) {
+    this.bounds = bounds;
     this.clipAabbs_0 = Kotlin.kotlin.collections.ArrayList_init_ww73n8$();
     this.clipProjections_0 = Kotlin.kotlin.collections.ArrayList_init_ww73n8$();
     this.aabbs = Kotlin.kotlin.collections.ArrayList_init_ww73n8$();
@@ -853,7 +871,7 @@ var LD38 = function (_, Kotlin) {
     tmp$_1 = this.clipAabbs_0.iterator();
     while (tmp$_1.hasNext()) {
       var item = tmp$_1.next();
-      destination_0.add_11rb$(item.clip_csyz3o$(p, velocity));
+      destination_0.add_11rb$(item.clip_5ltw8z$(p, velocity, this.bounds));
     }
     var $receiver = this.clipProjections_0;
     var minBy$result;
@@ -910,7 +928,7 @@ var LD38 = function (_, Kotlin) {
     this.gravity = 1;
     this.levelEnd = this.tileSize.times_za3lpa$(this.rowTiles);
     this.levelBounds = rect(Point$Companion_getInstance().zero, this.levelEnd);
-    this.collision = new Collision();
+    this.collision = new Collision(shrink(this.levelBounds, 1));
     this.character = new GameItem(new Point(32, 48));
     this.heldItem = null;
     this.keys = Kotlin.kotlin.collections.ArrayList_init_ww73n8$();
@@ -1064,7 +1082,7 @@ var LD38 = function (_, Kotlin) {
         tmp$ = 10;
       var velocity = tmp$;
       tmp$_0 = this.character;
-      tmp$_0.velocity = tmp$_0.velocity.plus_1a0nlc$(this.character.upDirection.shift.times_za3lpa$(velocity));
+      tmp$_0.velocity = tmp$_0.velocity.plus_1a0nlc$(this.character.upShift.times_za3lpa$(velocity - this.character.velocity.dot_1a0nlc$(this.character.upShift) | 0));
       this.character.baseAttackment = false;
       this.character.edgeHold = false;
     }
@@ -1134,8 +1152,45 @@ var LD38 = function (_, Kotlin) {
       this.heldItem = null;
     }
   };
+  Level.prototype.wrap_lo1euu$ = function ($receiver) {
+    var heldItem = this.heldItem;
+    var b = $receiver.base;
+    if (b.x <= 0 && $receiver.velocity.x < 0) {
+      $receiver.velocity = $receiver.velocity.rotate90;
+      $receiver.upDirection = $receiver.upDirection.rotate();
+      $receiver.base = b.rotate90.plus_1a0nlc$(Direction$Down_getInstance().shift);
+      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
+        heldItem.upDirection = heldItem.upDirection.rotate();
+      }
+    }
+     else if (b.y <= 0 && $receiver.velocity.y < 0) {
+      $receiver.velocity = $receiver.velocity.rotate270;
+      $receiver.upDirection = $receiver.upDirection.unrotate();
+      $receiver.base = b.rotate270.plus_1a0nlc$(Direction$Right_getInstance().shift);
+      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
+        heldItem.upDirection = heldItem.upDirection.unrotate();
+      }
+    }
+     else if (b.x >= (this.levelEnd.x - 1 | 0) && $receiver.velocity.x > 0) {
+      $receiver.velocity = $receiver.velocity.rotate90;
+      $receiver.upDirection = $receiver.upDirection.rotate();
+      $receiver.base = b.minus_1a0nlc$(this.levelEnd).rotate90.plus_1a0nlc$(this.levelEnd).plus_1a0nlc$(Direction$Up_getInstance().shift);
+      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
+        heldItem.upDirection = heldItem.upDirection.rotate();
+      }
+    }
+     else if (b.y >= (this.levelEnd.y - 1 | 0) && $receiver.velocity.y > 0) {
+      $receiver.velocity = $receiver.velocity.rotate270;
+      $receiver.upDirection = $receiver.upDirection.unrotate();
+      $receiver.base = b.minus_1a0nlc$(this.levelEnd).rotate270.plus_1a0nlc$(this.levelEnd).minus_1a0nlc$(Direction$Left_getInstance().shift);
+      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
+        heldItem.upDirection = heldItem.upDirection.unrotate();
+      }
+    }
+  };
   Level.prototype.update_lo1euu$ = function ($receiver) {
     var tmp$;
+    this.wrap_lo1euu$($receiver);
     if ($receiver.baseAttackment && (this.gameTick & 1) === 0)
       if ($receiver.velocity.dot_1a0nlc$($receiver.upShift.rotate90) > 0)
         $receiver.velocity = $receiver.velocity.minus_1a0nlc$($receiver.upShift.rotate90);
@@ -1202,40 +1257,6 @@ var LD38 = function (_, Kotlin) {
     }
     if (!$receiver.baseAttackment && !$receiver.edgeHold && $receiver.velocity.dot_1a0nlc$($receiver.upDirection.shift) > -14) {
       $receiver.velocity = $receiver.velocity.minus_1a0nlc$($receiver.upDirection.shift.times_za3lpa$(this.gravity));
-    }
-    var heldItem = this.heldItem;
-    var b = $receiver.base;
-    if (b.x <= 0 && $receiver.velocity.x < 0) {
-      $receiver.velocity = $receiver.velocity.rotate90;
-      $receiver.upDirection = $receiver.upDirection.rotate();
-      $receiver.base = b.rotate90.plus_1a0nlc$(Direction$Down_getInstance().shift);
-      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
-        heldItem.upDirection = heldItem.upDirection.rotate();
-      }
-    }
-     else if (b.y <= 0 && $receiver.velocity.y < 0) {
-      $receiver.velocity = $receiver.velocity.rotate270;
-      $receiver.upDirection = $receiver.upDirection.unrotate();
-      $receiver.base = b.rotate270.plus_1a0nlc$(Direction$Right_getInstance().shift);
-      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
-        heldItem.upDirection = heldItem.upDirection.unrotate();
-      }
-    }
-     else if (b.x >= (this.levelEnd.x - 1 | 0) && $receiver.velocity.x > 0) {
-      $receiver.velocity = $receiver.velocity.rotate90;
-      $receiver.upDirection = $receiver.upDirection.rotate();
-      $receiver.base = b.minus_1a0nlc$(this.levelEnd).rotate90.plus_1a0nlc$(this.levelEnd).plus_1a0nlc$(Direction$Up_getInstance().shift);
-      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
-        heldItem.upDirection = heldItem.upDirection.rotate();
-      }
-    }
-     else if (b.y >= (this.levelEnd.y - 1 | 0) && $receiver.velocity.y > 0) {
-      $receiver.velocity = $receiver.velocity.rotate270;
-      $receiver.upDirection = $receiver.upDirection.unrotate();
-      $receiver.base = b.minus_1a0nlc$(this.levelEnd).rotate270.plus_1a0nlc$(this.levelEnd).minus_1a0nlc$(Direction$Left_getInstance().shift);
-      if (Kotlin.equals($receiver, this.character) && heldItem != null) {
-        heldItem.upDirection = heldItem.upDirection.unrotate();
-      }
     }
   };
   Level.prototype.update = function () {
@@ -1535,6 +1556,9 @@ var LD38 = function (_, Kotlin) {
   Object.defineProperty(ControllerAction, 'Restart', {
     get: ControllerAction$Restart_getInstance
   });
+  Object.defineProperty(ControllerAction, 'Step', {
+    get: ControllerAction$Step_getInstance
+  });
   Object.defineProperty(ControllerAction, '_1', {
     get: ControllerAction$_1_getInstance
   });
@@ -1606,6 +1630,7 @@ var LD38 = function (_, Kotlin) {
   _.get_corner_1az43g$ = get_corner;
   _.get_center_1az43g$ = get_center;
   _.intersects_pcaoi7$ = intersects;
+  _.shrink_oinnkq$ = shrink;
   _.toPixi_vejqkh$ = toPixi;
   Object.defineProperty(_, 'Layout', {
     get: Layout_getInstance
