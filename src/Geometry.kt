@@ -144,4 +144,8 @@ infix fun PIXI.Rectangle.intersects(r: PIXI.Rectangle) =
     contains(Point(r.x.toInt(),
                    r.y.toInt() + r.height.toInt() - 1))
 
+fun PIXI.Rectangle.shrink(amount: Int) =
+    PIXI.Rectangle(x.toInt() + amount, y.toInt() + amount,
+                   width.toInt() - amount * 2, height.toInt() - amount * 2)
+
 fun Point.toPixi() = PIXI.Point(x, y)

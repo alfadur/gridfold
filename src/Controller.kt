@@ -11,6 +11,7 @@ enum class ControllerAction
     Select,
     Submit,
     Restart,
+    Step,
 
     _1, _2, _3,
     _4, _5, _6,
@@ -98,6 +99,7 @@ class KeyboardController(window: Window): KeyboardControllerBase(window)
         ControllerAction.Submit to intArrayOf(KeyCodes.Escape),
         ControllerAction.Select to intArrayOf(KeyCodes.Space, KeyCodes.Enter),
         ControllerAction.Restart to intArrayOf(KeyCodes.R),
+        ControllerAction.Step to intArrayOf(KeyCodes.U),
         ControllerAction._1 to intArrayOf(KeyCodes._1),
         ControllerAction._2 to intArrayOf(KeyCodes._2),
         ControllerAction._3 to intArrayOf(KeyCodes._3),

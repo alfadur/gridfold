@@ -12,9 +12,16 @@ class IngameStage(val size: Point, val levelIndex: Int): GameStage
 {
     val node = PIXI.Container()
     val level = Level(node, Layout.levels[levelIndex], size)
+    var running = true
 
     override fun handleController(controller: Controller)
     {
+        /*if (controller.isActive(ControllerAction.Step))
+        {
+            running = false
+            level.update()
+        }*/
+
         if (controller.isActive(ControllerAction.Up))
         {
             level.jump()
@@ -36,7 +43,10 @@ class IngameStage(val size: Point, val levelIndex: Int): GameStage
 
     override fun update()
     {
-        level.update()
+        if (running)
+        {
+            level.update()
+        }
     }
 
     override val root: PIXI.DisplayObject

@@ -136,8 +136,8 @@ class GameItem(val size: Point,
     var tag = 0
 
     var base: Point
-        get() = center - upShift * size.y
-        set(value) { center = value + upShift * size.y}
+        get() = center - upShift * size.y / 2
+        set(value) { center = value + upShift * size.y / 2}
 
     val upShift: Point get() = upDirection.shift
     val rectangle: PIXI.Rectangle get() = when (upDirection)
@@ -188,7 +188,7 @@ class Aabb(topLeft: Point, size: Point)
 
     fun contains(p: Point) = rectangle.contains(p)
 
-    fun clip(p: Point, velocity: Point): Point
+    fun clip(p: Point, velocity: Point, bounds: PIXI.Rectangle): Point
     {
         val target = p + velocity
         var result = target
@@ -196,6 +196,10 @@ class Aabb(topLeft: Point, size: Point)
         {
             val c1 = corners[i]
             val c2 = corners[(i + 1).rem(4)]
+            if (!bounds.contains((c1 + c2) / 2))
+            {
+                continue
+            }
             val side = c2 - c1
             val norm = (side / Math.abs(
                 (side.x + side.y).toDouble()).toInt())
@@ -212,7 +216,7 @@ class Aabb(topLeft: Point, size: Point)
 
 }
 
-class Collision
+class Collision(val bounds: PIXI.Rectangle)
 {
     private val clipAabbs = arrayListOf<Aabb>()
     private val clipProjections = arrayListOf<Point>()
@@ -227,7 +231,7 @@ class Collision
         val target = p + velocity
 
         aabbs.filterTo(clipAabbs) { it.contains(target) }
-        clipAabbs.mapTo(clipProjections){ it.clip(p, velocity) }
+        clipAabbs.mapTo(clipProjections){ it.clip(p, velocity, bounds) }
 
         val result = (clipProjections.minBy { (it - p).sqrLength }
             ?: p + velocity)
@@ -248,7 +252,7 @@ class Level(val container: PIXI.Container,
     val levelEnd = tileSize * rowTiles
     val levelBounds = rect(Point.zero, levelEnd)
 
-    val collision = Collision()
+    val collision = Collision(levelBounds.shrink(1))
 
     val character = GameItem(Point(32, 48))
     var heldItem: GameItem? = null
@@ -401,7 +405,8 @@ class Level(val container: PIXI.Container,
                 else -> 10
             }
             character.velocity +=
-                character.upDirection.shift * velocity
+                character.upShift *
+                    (velocity - (character.velocity dot character.upShift))
 
             character.baseAttackment = false
             character.edgeHold = false
@@ -493,48 +498,8 @@ class Level(val container: PIXI.Container,
         }
     }
 
-    fun GameItem.update()
+    fun GameItem.wrap()
     {
-        if(baseAttackment && (gameTick and 1) == 0) when
-        {
-            velocity dot upShift.rotate90 > 0 ->
-                velocity -= upShift.rotate90
-            velocity dot upShift.rotate90 < 0 ->
-                velocity += upShift.rotate90
-        }
-
-        val v = velocity
-
-        for (corner in corners)
-        {
-            val p = collision.clip(corner, velocity)
-            velocity = p - corner
-        }
-
-        center += velocity
-
-        baseAttackment = bottomCorners.any{
-            collision.hasCollision(it - upShift) }
-        leftAttachment = leftCorners.any{
-            collision.hasCollision(it + upShift.rotate90)}
-        rightAttachment = rightCorners.any{
-            collision.hasCollision(it - upShift.rotate90)}
-
-        if (v.x != velocity.x)
-        {
-            velocity = velocity withX 0
-        }
-        if (v.y != velocity.y)
-        {
-            velocity = velocity withY  0
-        }
-
-        if (!baseAttackment && !edgeHold
-            && velocity dot upDirection.shift > -14)
-        {
-            velocity -= upDirection.shift * gravity
-        }
-
         val heldItem = heldItem
         val b = base
         if (b.x <= 0 && velocity.x < 0)
@@ -583,15 +548,54 @@ class Level(val container: PIXI.Container,
         }
     }
 
+    fun GameItem.update()
+    {
+        wrap()
+
+        if(baseAttackment && (gameTick and 1) == 0) when
+        {
+            velocity dot upShift.rotate90 > 0 ->
+                velocity -= upShift.rotate90
+            velocity dot upShift.rotate90 < 0 ->
+                velocity += upShift.rotate90
+        }
+
+        val v = velocity
+
+        for (corner in corners)
+        {
+            val p = collision.clip(corner, velocity)
+            velocity = p - corner
+        }
+
+        center += velocity
+
+        baseAttackment = bottomCorners.any{
+            collision.hasCollision(it - upShift) }
+        leftAttachment = leftCorners.any{
+            collision.hasCollision(it + upShift.rotate90)}
+        rightAttachment = rightCorners.any{
+            collision.hasCollision(it - upShift.rotate90)}
+
+        if (v.x != velocity.x)
+        {
+            velocity = velocity withX 0
+        }
+        if (v.y != velocity.y)
+        {
+            velocity = velocity withY  0
+        }
+
+        if (!baseAttackment && !edgeHold
+            && velocity dot upDirection.shift > -14)
+        {
+            velocity -= upDirection.shift * gravity
+        }
+    }
+
     fun update()
     {
         ++gameTick
-
-/*
-        textNode.text = "${character.base}, ${character.velocity}, ${character.upShift}\n" +
-            "${character.baseAttackment}, ${character.leftAttachment}, ${character.rightAttachment}, ${character.edgeHold}\n" +
-            character.bottomCorners.joinToString()
-*/
 
         character.update()
         keys.forEach{ it.update() }
@@ -639,6 +643,13 @@ class Level(val container: PIXI.Container,
             }
         }
 */
+
+        /*fun PIXI.Rectangle.str() =
+            "($x, $y, $width, $height)"
+
+        textNode.text = "${character.base}, ${character.velocity}, ${character.upShift}\n" +
+            "${character.baseAttackment}, ${character.leftAttachment}, ${character.rightAttachment}, ${character.edgeHold}\n" +
+            character.bottomCorners.joinToString() + "\n${character.rectangle.str()}"*/
     }
 
     fun pointTile(point: Point) = point / tileSize
